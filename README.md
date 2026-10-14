@@ -12,16 +12,18 @@
 
 ---
 
+## Usage
+
 Note: `--impure` flag required to look for the `environment.nix` file
 
-## On NixOS
+### On NixOS
 
 Fresh install with `sudo nixos-install --impure --root /mnt --flake github:laurent-lao/nix-config#thinkpad`
 
 
 Rebuild with `sudo nixos-rebuild switch --impure --flake ~/nix-config#thinkpad`
 
-## On Standalone Home-Manager
+### On Standalone Home-Manager
 
 Rebuild with `home-manager switch --impure --flake ~/nix-config#lone-x86`
 
