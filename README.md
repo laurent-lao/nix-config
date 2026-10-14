@@ -3,10 +3,11 @@
  My Nix/NixOS config files
 
 --- 
+## Requirements
 
- Expects a `environment.nix` file at `/etc/nixos/` or `/etc/nix` (template provided)
+- Expects a `environment.nix` file at `/etc/nixos/environment.nix` or `/etc/nix/environment.nix` (template provided)
 
- Also expects my [dotfiles](https://github.com/laurent-lao/dotfiles) cloned into `~/dotfiles`
+- Also expects my [dotfiles](https://github.com/laurent-lao/dotfiles) cloned into `~/dotfiles`
 
 ---
 
