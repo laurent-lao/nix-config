@@ -6,7 +6,7 @@
 
  Expects a `environment.nix` file at `/etc/nixos/` or `/etc/nix` (template provided)
 
- Also expects my `dotfiles` cloned into `~/dotfiles`
+ Also expects my [dotfiles](https://github.com/laurent-lao/dotfiles) cloned into `~/dotfiles`
 
 ---
 
