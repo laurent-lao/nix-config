@@ -1,0 +1,6 @@
+{
+  userName = "username"
+  hostName = "hostName"
+  gitName = "Full Name"
+  gitEmail = "git@email.com"
+}
