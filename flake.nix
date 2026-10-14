@@ -85,7 +85,7 @@
     # Standalone Home-Manager
     homeConfigurations = {
       # home-manager switch --flake ~/nix-config#lone-86
-      "lone-x86" = home-manager.lib.homeManagerConfiguration {
+      "lone" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs; };
         modules = [ ./home.nix ];

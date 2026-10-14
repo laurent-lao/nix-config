@@ -25,5 +25,5 @@ Rebuild with `sudo nixos-rebuild switch --impure --flake ~/nix-config#thinkpad`
 
 ### On Standalone Home-Manager
 
-Rebuild with `home-manager switch --impure --flake ~/nix-config#lone-x86`
+Rebuild with `home-manager switch --impure --flake ~/nix-config#lone`
 
