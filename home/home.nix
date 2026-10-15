@@ -76,8 +76,9 @@ in
   # Dotfiles
   home.file = builtins.listToAttrs (
     if isLinux then [
+      (linkConfig "nvim")
+      (linkConfig "umbriel")
       # (linkConfig "alacritty")
-      # (linkConfig "nvim")
       # (linkConfig "starship" "starship.toml")
     ] else if isDarwin then [
       # (linkConfig "alacritty")
@@ -91,6 +92,8 @@ in
     neovim
   ] ++ (if isLinux then [
     # Linux only packages
+    bitwarden-desktop
+    bitwarden-cli
     btop
   ] else if isDarwin then [
     # macOS only packages
