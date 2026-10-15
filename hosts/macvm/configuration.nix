@@ -75,20 +75,6 @@ in
     wayland.enable = true;
   };
 
-  # Unlock kwallet with sddm
-  security.pam.services.sddm.kwallet.enable = true;
-
-  security.pam.services = {
-    ${finalEnv.userName} = {
-      kwallet = {
-        enable = true;
-	package = pkgs.kdePackages.kwallet-pam;
-      };
-    };
-  };
-
-  services.dbus.packages = with pkgs.kdePackages; [ kwallet ];
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -163,6 +149,7 @@ in
   ];
 
   environment.sessionVariables = {
+    # Only for VM
     WLR_NO_HARDWARE_CURSORS = "1";
   };
 

@@ -92,6 +92,8 @@ in
     neovim
   ] ++ (if isLinux then [
     # Linux only packages
+    alacritty
+    kitty
     bitwarden-desktop
     bitwarden-cli
     btop
