@@ -153,7 +153,7 @@ in
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
-  }
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
