@@ -73,8 +73,6 @@ in
     };
   };
 
-  services.kwallet.enable = if isLinux then true else false;
-
   # Dotfiles
   home.file = builtins.listToAttrs (
     if isLinux then [

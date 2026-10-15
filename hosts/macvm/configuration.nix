@@ -78,6 +78,17 @@ in
   # Unlock kwallet with sddm
   security.pam.services.sddm.kwallet.enable = true;
 
+  security.pam.services = {
+    ${finalEnv.userName} = {
+      kwallet = {
+        enable = true;
+	package = pkgs.kdePackages.kwallet-pam;
+      };
+    };
+  };
+
+  services.dbus.packages = with pkgs.kdePackages; [ kwallet ];
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
