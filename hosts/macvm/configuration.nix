@@ -75,6 +75,9 @@ in
     wayland.enable = true;
   };
 
+  # Unlock kwallet with sddm
+  security.pam.services.sddm.kwallet.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -122,6 +125,7 @@ in
   programs.umbriel.enable = true;
   programs.noctalia.enable = true;
 
+
   # Daemons
   hardware.bluetooth.enable = true;
   services.upower.enable = true;
@@ -139,10 +143,13 @@ in
   };
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-  # environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #   wget
-  # ];
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    kdePackages.polkit-kde-agent-1
+    kdePackages.kwallet
+    kdePackages.kwalletmanager
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
