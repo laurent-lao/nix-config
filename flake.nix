@@ -21,6 +21,7 @@
     # Get environment variables from environment.nix or use fallbacks
     nixosEnvPath = /etc/nixos/environment.nix;
     loneEnvPath = /etc/nix/environment.nix;
+    repoEnvPath = ./environment.nix;
 
     # Check which file exist
     fileEnv =
@@ -28,6 +29,8 @@
         import nixosEnvPath
       else if builtins.pathExists loneEnvPath then
         import (builtins.toPath loneEnvPath)
+      else if builtins.pathExists repoEnvPath then
+        import (builtins.toPath repoEnvPath)
       else
         {};
 
@@ -57,7 +60,7 @@
               home-manager.useUserPackages = true;
 
               # Point to home.nix in the same directory as flake.nix
-              home-manager.users."${finalEnv.userName}" = import ./home.nix;
+              home-manager.users."${finalEnv.userName}" = import ./home/home.nix;
             }
         ];
       };
@@ -76,7 +79,7 @@
               home-manager.useUserPackages = true;
 
               # Point to home.nix in the same directory as flake.nix
-              home-manager.users."${finalEnv.userName}" = import ./home.nix;
+              home-manager.users."${finalEnv.userName}" = import ./home/home.nix;
             }
         ];
       };
@@ -88,14 +91,14 @@
       "lone" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs; };
-        modules = [ ./home.nix ];
+        modules = [ ./home/home.nix ];
       };
 
       # home-manager switch --flake ~/nix-config#lone-arm
       "lone-arm" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-linux;
         extraSpecialArgs = { inherit inputs; };
-        modules = [ ./home.nix ];
+        modules = [ ./home/home.nix ];
       };
     };
   };

@@ -115,7 +115,7 @@ in
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
-    users.${finalEnv.userName} = import ../../home.nix;
+    users.${finalEnv.userName} = import ../../home/home.nix;
   };
 
   # Umbriel + Noctalia
