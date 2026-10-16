@@ -9,7 +9,7 @@
     - On a Fresh Install create the file at `/mnt/etc/nixos/environment.nix`
     - When rebuilding, just symlink it from the repo with `sudo ln -s environment.nix /etc/nixos/environment.nix`
 
-- Also expects my [dotfiles](https://github.com/laurent-lao/dotfiles) cloned into `~/dotfiles`
+- Also expects [stow](https://www.gnu.org/software/stow/)-styled (`/dotfiles/nvim/.config/nvim`) dotfiles cloned into `~/dotfiles` (here's mine: [dotfiles](https://github.com/laurent-lao/dotfiles))
 
 ---
 
