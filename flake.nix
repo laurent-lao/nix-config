@@ -66,12 +66,12 @@
       };
 
       # Mac VM (Apple Silicon)
-      "macvm" = nixpkgs.lib.nixosSystem {
+      "armvm" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./hosts/macvm/configuration.nix
-          { imports = [ ./hosts/macvm/hardware-configuration.nix ]; }
+          ./hosts/armvm/configuration.nix
+          { imports = [ ./hosts/armvm/hardware-configuration.nix ]; }
 
           inputs.home-manager.nixosModules.home-manager
             {

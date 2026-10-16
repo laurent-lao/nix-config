@@ -197,6 +197,6 @@ in
 
   # Global update shorthand command alias
   environment.shellAliases = {
-    nixup = "sudo nixos-rebuild switch --impure --flake ~/nix-config#macvm";
+    nixup = "sudo nixos-rebuild switch --impure --flake ~/nix-config#armvm";
   };
 }
