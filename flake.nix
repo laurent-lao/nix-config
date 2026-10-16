@@ -52,7 +52,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/thinkpad/configuration.nix
-          { imports = [ ./hosts/thinkpad/hardware-configuration.nix ]; }
+          { imports = [ /etc/nixos/hardware-configuration.nix ]; }
 
           inputs.home-manager.nixosModules.home-manager
             {
@@ -71,7 +71,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/vm/configuration.nix
-          { imports = [ ./hosts/vm/hardware-configuration.nix ]; }
+          { imports = [ /etc/nixos/hardware-configuration.nix ]; }
 
           inputs.home-manager.nixosModules.home-manager
             {
@@ -90,7 +90,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/armvm/configuration.nix
-          { imports = [ ./hosts/armvm/hardware-configuration.nix ]; }
+          { imports = [ /etc/nixos/hardware-configuration.nix ]; }
 
           inputs.home-manager.nixosModules.home-manager
             {
