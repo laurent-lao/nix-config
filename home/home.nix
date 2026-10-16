@@ -4,6 +4,7 @@ let
   # Get environment variables from environment.nix or use fallbacks
   nixosEnvPath = /etc/nixos/environment.nix;
   loneEnvPath = /etc/nix/environment.nix;
+  repoEnvPath = ./environment.nix;
 
   # Check which file exist
   fileEnv =
@@ -11,6 +12,8 @@ let
       import nixosEnvPath
     else if builtins.pathExists loneEnvPath then
       import (builtins.toPath loneEnvPath)
+    else if builtins.pathExists repoEnvPath then
+      import (builtins.toPath repoEnvPath)
     else
       {};
 
