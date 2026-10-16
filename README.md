@@ -5,7 +5,7 @@
 --- 
 ## Requirements
 
-- Expects a `environment.nix` file at `/etc/nixos/environment.nix` or `/etc/nix/environment.nix` (template provided)
+- Expects a `environment.nix` file at `/etc/nixos/environment.nix` or `/etc/nix/environment.nix` or `~/nix-config/environment.nix` (template provided)
     - On a Fresh Install create the file at `/mnt/etc/nixos/environment.nix`
     - When rebuilding, just symlink it from the repo with `sudo ln -s environment.nix /etc/nixos/environment.nix`
 
