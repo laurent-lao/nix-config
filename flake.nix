@@ -65,7 +65,26 @@
         ];
       };
 
-      # Mac VM (Apple Silicon)
+      # x86_64 VM
+      "vm" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/vm/configuration.nix
+          { imports = [ ./hosts/vm/hardware-configuration.nix ]; }
+
+          inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              # Point to home.nix in the same directory as flake.nix
+              home-manager.users."${finalEnv.userName}" = import ./home/home.nix;
+            }
+        ];
+      };
+
+      # ARM/Apple Silicon VM
       "armvm" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = { inherit inputs; };
