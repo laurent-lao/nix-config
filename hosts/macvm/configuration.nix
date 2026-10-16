@@ -137,10 +137,6 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Global update shorthand command alias
-  environment.shellAliases = {
-    nixup = "sudo nixos-rebuild switch --flake ~/nix-config#macvm";
-  };
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -198,4 +194,9 @@ in
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "26.05"; # Did you read the comment?
+
+  # Global update shorthand command alias
+  environment.shellAliases = {
+    nixup = "sudo nixos-rebuild switch --impure --flake ~/nix-config#macvm";
+  };
 }
