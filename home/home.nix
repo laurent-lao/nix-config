@@ -1,12 +1,12 @@
 # hosts/macvm/home.nix
 { pkgs, lib, config, ... }:
 let
-  # Get environment variables from environment.nix or use fallbacks
+  # Load required environment values from environment.nix.
   nixosEnvPath = /etc/nixos/environment.nix;
   loneEnvPath = /etc/nix/environment.nix;
   repoEnvPath = ./environment.nix;
 
-  # Check which file exist
+  # Check which file exists and fail if none is available.
   fileEnv =
     if builtins.pathExists nixosEnvPath then
       import nixosEnvPath
@@ -15,23 +15,14 @@ let
     else if builtins.pathExists repoEnvPath then
       import (builtins.toPath repoEnvPath)
     else
-      {};
-
-  fallbacks = {
-    hostName = "nixos";
-    userName = "nixos-user";
-    gitName = "Anonymous User";
-    gitEmail = "anonymous@example.com";
-  };
-
-  finalEnv = fallbacks // fileEnv;
+      throw "Missing environment.nix: expected /etc/nixos/environment.nix, /etc/nix/environment.nix, or ${toString repoEnvPath}";
 
   # Detect platform
   isLinux = pkgs.stdenv.hostPlatform.isLinux;
   isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 
   # Define base paths
-  homeDir = if isDarwin then "/Users/${finalEnv.userName}" else "/home/${finalEnv.userName}";
+  homeDir = if isDarwin then "/Users/${fileEnv.userName}" else "/home/${fileEnv.userName}";
 
   dotfiles = "${homeDir}/dotfiles";
 
@@ -51,7 +42,7 @@ in
   home.stateVersion = "26.05";
 
   # User identity
-  home.username = finalEnv.userName;
+  home.username = fileEnv.userName;
   home.homeDirectory = homeDir;
 
   # Global
@@ -67,8 +58,8 @@ in
     enable = if isLinux then true else false;
     settings = {
       user = {
-        name = finalEnv.gitName;
-        email = finalEnv.gitEmail;
+        name = fileEnv.gitName;
+        email = fileEnv.gitEmail;
       };
       init = {
         defaultBranch = "main";
