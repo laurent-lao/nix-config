@@ -10,6 +10,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Plasma Manager
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Nixos Splash splashScreen
+    nixos-splash-plasma6 = {
+      url = "github:nimrodium/nixos-splash-plasma6";
+      inputs.nixpkgs.follows = "nixpkgs";
+   };
+
     # silentSDDM theme
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";

@@ -25,6 +25,8 @@ in
     [ # Include the results of the hardware scan.
       # ./hardware-configuration.nix # handled by flake
       inputs.home-manager.nixosModules.home-manager
+      inputs.plasma-manager.homeModules.plasma-manager
+      inputs.nixos-splash-plasma6.packages.${pkgs.system}.default
       inputs.noctalia.nixosModules.default
       inputs.umbriel.nixosModules.default
       inputs.silentSDDM.nixosModules.default
@@ -85,6 +87,22 @@ in
   programs.silentSDDM = {
     enable = true;
     theme = "default";
+  };
+
+  # Plasma-manager themes
+  programs.plasma = {
+    enable = true;
+
+    workspace = {
+      lookAndFeel = "org.kde.breezedark.desktop";
+      theme = "breeze-dark";
+      colorScheme = "GruvboxColors";
+    };
+
+    splashScreen = {
+      engine = "KSplashQML";
+      theme = "NixOS-Splash-Plasma6";
+    };
   };
 
   # Configure keymap in X11
