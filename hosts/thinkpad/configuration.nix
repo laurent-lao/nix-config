@@ -33,9 +33,21 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  # boot.loader.systemd-boot.enable = true;
+  # Use the limine boot loader
+  boot.loader.limine.enable = true;
+  # Let NixOS modify EFI boot variables
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Use plymouth boot animation
+  boot.plymouth.enable = true;
+  boot.plymouth.theme = "spinner";
+  # No terminal text on plymouth
+  boot.initrd.verbose = false;
+  boot.consoleLogLevel = 3;
+  boot.kernelParams = [ "quiet" "rd.udev.log_level=3" "rd.systemd.show_status=auto" ];
+  boot.loader.timeout = 0;
+  
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
