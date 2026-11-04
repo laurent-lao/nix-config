@@ -27,6 +27,7 @@ in
       inputs.home-manager.nixosModules.home-manager
       inputs.noctalia.nixosModules.default
       inputs.umbriel.nixosModules.default
+      inputs.silentSDDM.nixosModules.default
     ];
 
   # Enable flakes
@@ -47,7 +48,7 @@ in
   boot.consoleLogLevel = 3;
   boot.kernelParams = [ "quiet" "rd.udev.log_level=3" "rd.systemd.show_status=auto" ];
   boot.loader.timeout = 0;
-  
+
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -78,6 +79,12 @@ in
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
+  };
+
+  # Use silentSDDM theme
+  programs.silentSDDM = {
+    enable = true;
+    theme = "default";
   };
 
   # Configure keymap in X11

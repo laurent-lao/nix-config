@@ -10,6 +10,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # silentSDDM theme
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+   };
+
     # Noctalia + Umbriel
     noctalia.url = "github:noctalia-dev/noctalia";
     umbriel.url = "github:noctalia-dev/umbriel";
