@@ -47,7 +47,7 @@ in
   boot.initrd.verbose = false;
   boot.consoleLogLevel = 3;
   boot.kernelParams = [ "quiet" "rd.udev.log_level=3" "rd.systemd.show_status=auto" ];
-  boot.loader.timeout = 0;
+  boot.loader.timeout = 5;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -148,6 +148,12 @@ in
   # ThinkPad-only services
   services.fprintd.enable = true;
   virtualisation.libvirtd.enable = true;
+
+  # Let Umbriel start the KDE helpers by service name on Arch and NixOS.
+  systemd.packages = with pkgs.kdePackages; [
+    polkit-kde-agent-1
+    kwallet-pam
+  ];
 
   # Install firefox.
   programs.firefox.enable = true;
