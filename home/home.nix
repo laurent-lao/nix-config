@@ -1,5 +1,5 @@
 # hosts/macvm/home.nix
-{ pkgs, lib, config, inputs, ... }:
+{ pkgs, lib, config, inputs, ... }@args:
 let
   # Load required environment values from environment.nix.
   nixosEnvPath = /etc/nixos/environment.nix;
@@ -67,8 +67,8 @@ in
     };
   };
 
-  # OS-dependent Imports
-  imports = if isLinux then [
+  # Optional host-specific modules, followed by OS-dependent imports.
+  imports = (args.extraHomeModules or []) ++ (if isLinux then [
     # Plasma-manager themes
     inputs.plasma-manager.homeModules.plasma-manager
     {
@@ -85,7 +85,7 @@ in
         };
       };
     }
-  ] else [];
+  ] else []);
 
   # OS-dependent Dotfiles
   home.file = builtins.listToAttrs (

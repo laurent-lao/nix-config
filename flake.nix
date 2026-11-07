@@ -67,6 +67,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs.extraHomeModules = [ ./home/extras.nix ];
 
               # Point to home.nix in the same directory as flake.nix
               home-manager.users."${fileEnv.userName}" = import ./home/home.nix;
