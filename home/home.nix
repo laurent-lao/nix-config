@@ -47,11 +47,20 @@ in
 
   # Global
   programs.home-manager.enable = true;
-  programs.zsh.enable = true;
-  # programs.bash.enable = true;
   home.sessionVariables = {EDITOR = "nvim"; Visual = "nvim"; };
+  programs.zsh.enable = true;
+
+  # Terminal Shell
+  # programs.bash.enable = true;
+  programs.zsh.autosuggestion.enable = true;
+  programs.zsh.syntaxHighlighting.enable = true;
+  programs.starship.enable = true;
+
+  # Mise
+  programs.mise.enable = true;
 
   xdg.enable = if isLinux then true else false;
+  fonts.fontconfig.enable = isLinux;
 
   # Git
   programs.git = {
@@ -104,14 +113,61 @@ in
   # OS-Dependent Packages
   home.packages = with pkgs; [
     # All platforms
+
+    # Editors
     neovim
+    nano
+    vscode
+
+    # CLI utilities
+    bat
+    eza
+    fd
+    fzf
+
+    # System information and monitoring
+    fastfetch
+    htop
+    btop
   ] ++ (if isLinux then [
     # Linux only packages
+
+    # Terminals
     alacritty
     kitty
+
+    # Password management
     bitwarden-desktop
     bitwarden-cli
-    btop
+
+    # Voice input and clipboard
+    voxtype
+    wl-clipboard
+    wtype
+
+    # Documents
+    texlive.combined.scheme-full
+    zathura
+
+    # File sharing
+    localsend
+
+    # Fonts
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+    noto-fonts-cjk-sans
+
+    # AI tools
+    chatgpt
+    codex
+    opencode
+    herdr
+    # antigravity-cli
+    # claude-code
+    # gemini-cli
+    # github-copilot-cli
+
+    # Desktop appearance
     inputs.nixos-splash-plasma6.packages.${pkgs.system}.default
   ] else if isDarwin then [
     # macOS only packages
