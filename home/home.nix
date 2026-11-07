@@ -1,5 +1,5 @@
 # hosts/macvm/home.nix
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, inputs, ... }:
 let
   # Load required environment values from environment.nix.
   nixosEnvPath = /etc/nixos/environment.nix;
@@ -67,7 +67,27 @@ in
     };
   };
 
-  # Dotfiles
+  # OS-dependent Imports
+  imports = if isLinux then [
+    # Plasma-manager themes
+    inputs.plasma-manager.homeModules.plasma-manager
+    {
+      programs.plasma = {
+        enable = true;
+        workspace = {
+          lookAndFeel = "org.kde.breezedark.desktop";
+          theme = "breeze-dark";
+          colorScheme = "GruvboxColors";
+          splashScreen = {
+            engine = "KSplashQML";
+            theme = "NixOS-Splash-Plasma6";
+          };
+        };
+      };
+    }
+  ] else [];
+
+  # OS-dependent Dotfiles
   home.file = builtins.listToAttrs (
     if isLinux then [
       (linkConfig "nvim")
@@ -81,6 +101,7 @@ in
     ] else []
   );
 
+  # OS-Dependent Packages
   home.packages = with pkgs; [
     # All platforms
     neovim
@@ -91,6 +112,7 @@ in
     bitwarden-desktop
     bitwarden-cli
     btop
+    inputs.nixos-splash-plasma6.packages.${pkgs.system}.default
   ] else if isDarwin then [
     # macOS only packages
   ] else []);
