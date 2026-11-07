@@ -61,6 +61,12 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
+
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
 
   # Set your time zone.
   time.timeZone = "America/Toronto";
@@ -115,7 +121,7 @@ in
   users.users.${fileEnv.userName} = {
     isNormalUser = true;
     description = "toaster";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -138,6 +144,10 @@ in
   hardware.bluetooth.enable = true;
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
+
+  # ThinkPad-only services
+  services.fprintd.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   # Install firefox.
   programs.firefox.enable = true;
