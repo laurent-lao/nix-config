@@ -56,8 +56,12 @@ in
   programs.zsh.syntaxHighlighting.enable = true;
   programs.starship.enable = true;
 
-  # Mise
+  # Terminal tools 
   programs.mise.enable = true;
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   xdg.enable = if isLinux then true else false;
   fonts.fontconfig.enable = isLinux;
@@ -124,10 +128,15 @@ in
     eza
     fd
     fzf
+    ripgrep
+
+    # Command reference
+    tealdeer
 
     # System information and monitoring
     fastfetch
     htop
+    dust
     btop
   ] ++ (if isLinux then [
     # Linux only packages
