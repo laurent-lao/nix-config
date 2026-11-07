@@ -52,6 +52,12 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
+
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
 
   # Set your time zone.
   time.timeZone = "America/Toronto";
